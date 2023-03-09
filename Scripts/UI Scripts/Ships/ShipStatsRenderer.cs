@@ -16,6 +16,7 @@ public class ShipStatsRenderer : MonoBehaviour
     [SerializeField] private TMP_Text _capacityUpdateCostValue;
 
     private Ship _ship;
+
     private ShipBuying _shipBuying;
 
 
@@ -24,17 +25,16 @@ public class ShipStatsRenderer : MonoBehaviour
         _title.text = name;
         _shipBuying = GetComponent<ShipBuying>();
         _shipBuying.ShipCreated += SetShip;
-
-        if (_ship != null)
-            _ship.CharacteristicsChanged += UpdateStats;
     }
 
     private void OnDisable()
     {
-        if(_ship != null)
-            _ship.CharacteristicsChanged -= UpdateStats;
-
         _shipBuying.ShipCreated -= SetShip;
+    }
+
+    private void OnDestroy()
+    {
+        _ship.CharacteristicsChanged -= UpdateStats;
     }
 
     private void UpdateStats(ShipCharacteristics characteristics)

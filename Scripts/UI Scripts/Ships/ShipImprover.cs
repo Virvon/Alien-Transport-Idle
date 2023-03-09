@@ -6,6 +6,7 @@ using UnityEngine;
 public class ShipImprover : MonoBehaviour
 {
     private Ship _ship;
+
     private ShipBuying _shipBuying;
 
     private void OnEnable()

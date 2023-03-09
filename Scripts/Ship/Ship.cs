@@ -7,18 +7,23 @@ using UnityEngine.Events;
 [RequireComponent(typeof(ShipCharacteristics))]
 public class Ship : MonoBehaviour
 {
+    private GameObject _pointsWrapper;
+
+    private Point _startPoint;
+    private Point _targetPoint;
+
+    private Player _player;
+
+    private int _passengersCount;
+
+    private List<Point> _points;
+    
+    private ShipCharacteristics _shipCharacteristics;
+
     public Point StartPoint => _startPoint;
 
     public event UnityAction<Point> TargetChanged;
     public event UnityAction<ShipCharacteristics> CharacteristicsChanged;
-
-    private GameObject _pointsWrapper;
-    private Point _startPoint;
-    private Player _player;
-    private int _passengersCount;
-    private List<Point> _points;
-    private Point _targetPoint;
-    private ShipCharacteristics _shipCharacteristics;
 
     private void Start()
     {
@@ -72,7 +77,7 @@ public class Ship : MonoBehaviour
 
         if (isEnoughMoney)
         {
-            _shipCharacteristics.UpdateSpeed();
+            _shipCharacteristics.UpgradeSpeed();
             CharacteristicsChanged?.Invoke(_shipCharacteristics);
         }
     }
@@ -83,7 +88,7 @@ public class Ship : MonoBehaviour
 
         if(isEnoughMoney)
         {
-            _shipCharacteristics.UpdateCapacity();
+            _shipCharacteristics.UpgradeCapacity();
             CharacteristicsChanged?.Invoke(_shipCharacteristics);
         }
     }

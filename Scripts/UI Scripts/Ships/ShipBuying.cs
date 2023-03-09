@@ -6,14 +6,19 @@ using UnityEngine.Events;
 
 public class ShipBuying : MonoBehaviour
 {
-    public event UnityAction<Ship> ShipCreated;
-
     [SerializeField] private Player _player;
+
     [SerializeField] private int _cost;
+
     [SerializeField] private Ship _shipPrefab;
+
     [SerializeField] private SpawnPoint _spawnPoint;
+
     [SerializeField] private GameObject _hidingPanel;
+
     [SerializeField] private TMP_Text _costValue;
+
+    public event UnityAction<Ship> ShipCreated;
 
     private void Start()
     {

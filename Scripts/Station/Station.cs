@@ -7,19 +7,24 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(StationCharacteristics))]
 public class Station : MonoBehaviour, IPointerClickHandler
 {
-    public event UnityAction<int> PassengersCountChanged;
-    public event UnityAction<StationCharacteristics> CharacteristicsChanged;
-    public int PassengersCount => _passengersCount;
-
     [SerializeField] private Player _player;
+
     [SerializeField] private float _zoom = 10;
+
     [SerializeField] private GameObject _view;
+
     [SerializeField] private Menu _menu;
+
     [SerializeField] private CameraZoom _camera;
 
     private StationCharacteristics _stationCharacteristics;
+
     private int _passengersCount;
-    private Coroutine _spawner;
+
+    public int PassengersCount => _passengersCount;
+
+    public event UnityAction<int> PassengersCountChanged;
+    public event UnityAction<StationCharacteristics> CharacteristicsChanged;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -47,7 +52,7 @@ public class Station : MonoBehaviour, IPointerClickHandler
 
         if (isEnoughMoney)
         {
-            _stationCharacteristics.UpdateQuantityPerMinute();
+            _stationCharacteristics.UpgradeQuantityPerMinute();
             CharacteristicsChanged?.Invoke(_stationCharacteristics);
         }
     }
@@ -58,7 +63,7 @@ public class Station : MonoBehaviour, IPointerClickHandler
 
         if (isEnoughMoney)
         {
-            _stationCharacteristics.UpdateMaxPassengersCount();
+            _stationCharacteristics.UpgradeMaxPassengersCount();
             CharacteristicsChanged?.Invoke(_stationCharacteristics);
         }
     }

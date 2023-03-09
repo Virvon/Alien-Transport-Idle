@@ -6,12 +6,12 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Scrollbar))]
 public class GlobalVolumeScrollbar : MonoBehaviour
 {
-    private GlobalVolume[] _audioSourses;
+    [SerializeField] private GlobalVolume[] _audioSourses;
+
     private Scrollbar _scrollbar;
 
     private void Start()
     {
-        _audioSourses = FindObjectsOfType<GlobalVolume>();
         _scrollbar = GetComponent<Scrollbar>();
     }
 

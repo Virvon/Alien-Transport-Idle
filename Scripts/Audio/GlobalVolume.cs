@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class GlobalVolume : MonoBehaviour
 { 
     private float _ownVolume;
+    private float _volume;
+
     private AudioSource _audioSource;
 
     private void Start()

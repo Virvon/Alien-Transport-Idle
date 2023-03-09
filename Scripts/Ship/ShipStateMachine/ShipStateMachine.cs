@@ -5,12 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(Ship))]
 public class ShipStateMachine : MonoBehaviour
 {
-    public State CurrentState => _currentState;
-
     [SerializeField] private State _firstState;
 
     private Point _target;
+
     private State _currentState;
+
+    public State CurrentState => _currentState;
 
     private void Start()
     {

@@ -4,35 +4,30 @@ using UnityEngine;
 
 public class ShipCharacteristics : MonoBehaviour
 {
-    public int MaxPassengersCount => _maxPassengersCount;
-    public int CapacityUpdateCost => _capacityUpdateCost;
-    public int SpeedUpdateCost => _speedUpdateCost;
-    public float Speed => _speed;
-    public int Fare => _fare;
-    public int CapacityUpdateLevel => _capacityUpdateLevel;
-    public int SpeedUpdateLevel => _speedUpdateLevel;
+    [field: SerializeField] public  int MaxPassengersCount { get; private set; }
+    [field: SerializeField] public int CapacityUpdateCost { get; private set; }
+    [field: SerializeField] public int Fare { get; private set; }
+    [field: SerializeField] public int SpeedUpdateCost { get; private set; }
 
-    [SerializeField] private int _maxPassengersCount;
-    [SerializeField] private int _capacityUpdateCost;
-    [SerializeField] private int _fare;
-    [SerializeField] private int _speedUpdateCost;
-    [SerializeField] private float _speed;
+    [field: SerializeField] public float Speed { get; private set; }
 
     private int _capacityUpdateLevel = 1;
     private int _speedUpdateLevel = 1;
+    public int CapacityUpdateLevel => _capacityUpdateLevel;
+    public int SpeedUpdateLevel => _speedUpdateLevel;
 
-    public void UpdateSpeed()
+    public void UpgradeSpeed()
     {
-        _speed += 0.4f;
-        _speedUpdateCost += 5;
+        Speed += 0.4f;
+        SpeedUpdateCost += 5;
         _speedUpdateLevel++;
     }
 
-    public void UpdateCapacity()
+    public void UpgradeCapacity()
     {
-        _capacityUpdateCost += 8;
-        _fare++;
-        _maxPassengersCount++;
+        CapacityUpdateCost += 8;
+        Fare++;
+        MaxPassengersCount++;
         _capacityUpdateLevel++;
     }
 }

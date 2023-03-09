@@ -8,6 +8,7 @@ public class ShipPanel : MonoBehaviour
     [SerializeField] private TMP_Text _shipCountValue;
 
     private ShipBuying[] _shipViews;
+
     private int _shipCount = 0;
 
     private void OnEnable()

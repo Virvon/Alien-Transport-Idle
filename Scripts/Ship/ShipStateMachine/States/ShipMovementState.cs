@@ -10,10 +10,12 @@ public class ShipMovementState : State
 
     [SerializeField] private float _minDistanceToNextShip;
     [SerializeField] private float _rotationSpeed;
+
     [SerializeField] private GameObject _overtakeEffeck;
 
     private Ship _firstShipInFront;
     private Ship _secondShipInFront;
+
     private ShipCharacteristics _characteristics;
 
     private void Start()

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Menu : MonoBehaviour
 {
     public event UnityAction<bool> Clicked;
+
     public void OpenPanel(GameObject panel)
     {
         panel.SetActive(true);

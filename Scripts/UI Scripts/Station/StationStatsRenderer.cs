@@ -16,14 +16,12 @@ public class StationStatsRenderer : MonoBehaviour
 
     private Station _station;
 
-
     private void OnEnable()
     {
         _station = GetComponent<StationView>().Station;
         _title.text = name;
         _station.CharacteristicsChanged += UpdateStats;   
     }
-
 
     private void OnDisable()
     {

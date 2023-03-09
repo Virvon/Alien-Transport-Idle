@@ -5,11 +5,12 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    public event UnityAction<int> MoneyCountChanged;
-    public event UnityAction MoneySpent;
+    [SerializeField] private int _money;
+
     public int Money => _money;
 
-    [SerializeField] private int _money;
+    public event UnityAction<int> MoneyCountChanged;
+    public event UnityAction MoneySpent;
 
     private void Start()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StationView : MonoBehaviour
 {
-    public Station Station => _station;
-
     [SerializeField] private Station _station;
+
+    public Station Station => _station;
 }

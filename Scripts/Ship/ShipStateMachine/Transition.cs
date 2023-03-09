@@ -4,10 +4,11 @@ using UnityEngine;
 
 public abstract class Transition : MonoBehaviour
 {
-    public State TargetState => _targetState;
-    public bool NeedTransit { get; protected set; }
-
     [SerializeField] private State _targetState;
+
+    public State TargetState => _targetState;
+
+    public bool NeedTransit { get; protected set; }
 
     protected Point Target { get; private set; }
 

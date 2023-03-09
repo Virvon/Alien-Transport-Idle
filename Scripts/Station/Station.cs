@@ -19,7 +19,7 @@ public class Station : MonoBehaviour, IPointerClickHandler
 
     private StationCharacteristics _stationCharacteristics;
     private int _passengersCount;
-    private float _lastSpawnTime;
+    private Coroutine _spawner;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -32,24 +32,7 @@ public class Station : MonoBehaviour, IPointerClickHandler
     {
         _stationCharacteristics = GetComponent<StationCharacteristics>();
         _passengersCount = 0;
-        _lastSpawnTime = 0;
-    }
-
-    private void Update()
-    {
-        float spawnTime = 60 / _stationCharacteristics.QuantityPerMinute;
-        _lastSpawnTime += Time.deltaTime;
-
-        if(_lastSpawnTime >= spawnTime)
-        {
-            if(_passengersCount < _stationCharacteristics.MaxPassengersCount)
-            {
-                _passengersCount++;
-                PassengersCountChanged?.Invoke(_passengersCount);
-            }
-
-            _lastSpawnTime = 0;
-        }
+        StartCoroutine(Spawner());
     }
 
     public void TakePassenger()
@@ -77,6 +60,24 @@ public class Station : MonoBehaviour, IPointerClickHandler
         {
             _stationCharacteristics.UpdateMaxPassengersCount();
             CharacteristicsChanged?.Invoke(_stationCharacteristics);
+        }
+    }
+
+    private IEnumerator Spawner()
+    {
+        bool isFinish = false;
+
+        while (isFinish == false)
+        {
+            float spawnTime = 60 / _stationCharacteristics.QuantityPerMinute;
+
+            if(_passengersCount < _stationCharacteristics.MaxPassengersCount)
+            {
+                _passengersCount++;
+                PassengersCountChanged?.Invoke(_passengersCount);
+            }
+
+            yield return new WaitForSeconds(spawnTime);
         }
     }
 }
